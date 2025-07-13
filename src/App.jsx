@@ -62,6 +62,7 @@ function App() {
         </Section>
         <section id="examples">
           <Tabs
+            buttonsContainer="menu"
             buttons={
               <>
                 <TabButton

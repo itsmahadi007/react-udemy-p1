@@ -1,9 +1,9 @@
-import React from "react";
-
-export default function Tabs({ children, buttons }) {
+export default function Tabs({ children, buttons, buttonsContainer }) {
+    // buttonsContainer can be a string or a React component
+  const ButtonContainer = buttonsContainer;
   return (
     <>
-      <menu>{buttons}</menu>
+      <ButtonContainer>{buttons}</ButtonContainer>
       {children}
     </>
   );
