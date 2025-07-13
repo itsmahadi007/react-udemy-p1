@@ -1,8 +1,12 @@
 import { CORE_CONCEPTS as data, EXAMPLES } from "./data";
 import HeaderComponent from "./components/Header";
 import { CoreConcepts } from "./components/CoreConcepts";
-import TabButton from "./components/reuseable_components/TabButton";
+import {
+  TabButton,
+  TabButtonDynamicProps,
+} from "./components/reuseable_components/TabButton";
 import { useState } from "react";
+import Section from "./components/Section";
 
 function App() {
   const [tabContant, setTabContent] = useState();
@@ -27,23 +31,24 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <HeaderComponent />
       <main>
-        <section id="core-concepts">
+        <Section title="Core Concepts" id="core-concepts">
           <ul>
             {data.map((item) => {
+              return <CoreConcepts key={item.title} {...item} />;
+            })}
+            {/* {data.map((item) => {
               return (
                 <CoreConcepts
                   key={item.title}
-                  // title={item.title}
-                  // description={item.description}
-                  // image={item.image}
-                  // or
-                  {...item}
+                  title={item.title}
+                  description={item.description}
+                  image={item.image}
                 />
               );
-            })}
+            })} */}
             {/* <CoreConcepts
               title={data[0].title}
               description={data[0].description}
@@ -53,7 +58,7 @@ function App() {
             <CoreConcepts {...data[2]} />
             <CoreConcepts {...data[3]} /> */}
           </ul>
-        </section>
+        </Section>
         <section id="examples">
           <menu>
             <TabButton
@@ -71,9 +76,9 @@ function App() {
               onSelect={() => handleSelect("props")}
               label="Props"
             />
-            <TabButton
-              isSelected={tabContant === "state"}
-              onSelect={() => handleSelect("state")}
+            <TabButtonDynamicProps
+              className={tabContant === "state" ? "active" : undefined}
+              onClick={() => handleSelect("state")}
               label="State"
             />
           </menu>
@@ -102,7 +107,7 @@ function App() {
           )} */}
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
