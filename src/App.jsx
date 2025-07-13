@@ -7,6 +7,7 @@ import {
 } from "./components/reuseable_components/TabButton";
 import { useState } from "react";
 import Section from "./components/Section";
+import Tabs from "./components/reuseable_components/Tabs";
 
 function App() {
   const [tabContant, setTabContent] = useState();
@@ -60,29 +61,34 @@ function App() {
           </ul>
         </Section>
         <section id="examples">
-          <menu>
-            <TabButton
-              isSelected={tabContant === "components"}
-              onSelect={() => handleSelect("components")}
-              label="Components"
-            />
-            <TabButton
-              isSelected={tabContant === "jsx"}
-              onSelect={() => handleSelect("jsx")}
-              label="JSX"
-            />
-            <TabButton
-              isSelected={tabContant === "props"}
-              onSelect={() => handleSelect("props")}
-              label="Props"
-            />
-            <TabButtonDynamicProps
-              className={tabContant === "state" ? "active" : undefined}
-              onClick={() => handleSelect("state")}
-              label="State"
-            />
-          </menu>
-          {tabContent}
+          <Tabs
+            buttons={
+              <>
+                <TabButton
+                  isSelected={tabContant === "components"}
+                  onSelect={() => handleSelect("components")}
+                  label="Components"
+                />
+                <TabButton
+                  isSelected={tabContant === "jsx"}
+                  onSelect={() => handleSelect("jsx")}
+                  label="JSX"
+                />
+                <TabButton
+                  isSelected={tabContant === "props"}
+                  onSelect={() => handleSelect("props")}
+                  label="Props"
+                />
+                <TabButtonDynamicProps
+                  className={tabContant === "state" ? "active" : undefined}
+                  onClick={() => handleSelect("state")}
+                  label="State"
+                />
+              </>
+            }
+          >
+            {tabContent}
+          </Tabs>
 
           {/* {!tabContant ? (
             <p>Please select a topic.</p>
